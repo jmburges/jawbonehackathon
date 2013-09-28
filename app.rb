@@ -25,7 +25,7 @@ class JawboneApp < Sinatra::Base
   end
 
   helpers do
-    def adv_partial(template,locals=nil)
+    def partial(template,locals=nil)
       if template.is_a?(String) || template.is_a?(Symbol)
         template = :"_#{template}"
       else
