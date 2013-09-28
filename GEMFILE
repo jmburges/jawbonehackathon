@@ -3,6 +3,7 @@ source "https://rubygems.org"
 gem "sinatra"
 gem "sass"
 gem "haml"
+gem "multi_json"
 
 group :development do
   gem "shotgun"
