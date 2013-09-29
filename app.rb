@@ -5,8 +5,14 @@ Dir.glob('./lib/*.rb') do |model|
   require model
 end
 
-
-class App < Sinatra::Base
+class JawboneApp < Sinatra::Base
+  use Rack::Session::Cookie, :secret => '33west26'
+  use OmniAuth::Builder do
+    provider :jawbone, 
+      ENV['JAWBONE_CLIENT_ID'], 
+      ENV['JAWBONE_CLIENT_SECRET'], 
+      :scope => "basic_read mood_read sleep_read"
+  end
   
   configure do
     set :root, File.dirname(__FILE__)
@@ -19,6 +25,10 @@ class App < Sinatra::Base
   end
 
   get '/' do
+    client = Jawbone::Client.new session[:jawbone_token]
+    puts "#"*15
+    puts client.sleeps
+    puts "#"*15
     haml :index
   end
 
@@ -32,6 +42,15 @@ class App < Sinatra::Base
 
   get '/custom.css' do
     scss :custom
+
+  end
+
+  get '/auth/jawbone/callback' do
+    auth = request.env['omniauth.auth']
+    session[:jawbone_token] = auth["credentials"]["token"]
+    session[:jawbone_id]=auth["uid"]
+    session[:first_name] = auth["info"]["first_name"]
+    session[:last_name] = auth["info"]["last_name"]
   end
 
   helpers do
