@@ -18,7 +18,7 @@
 
 
   <% @locations.each_with_index do |location,index| %>
-    var marker<%= index %> = L.circle(<%="[#{location[1]["venue"]["location"]["lat"]}, #{location[1]["venue"]["location"]["lng"]}]"%>, 500, {color: getColor(<%="#{location[1]["quality"]}"%>)}).addTo(map);
+    var marker<%= index %> = L.circle(<%="[#{location[1]["venue"]["location"]["lat"]}, #{location[1]["venue"]["location"]["lng"]}]"%>, 500, {color: getColor(<%="#{location[1]["mood"]}"%>)}).addTo(map);
   <% end %>
 
   var legend = L.control({position: 'bottomright'});

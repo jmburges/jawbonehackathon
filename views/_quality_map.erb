@@ -18,12 +18,12 @@
 
 
   <% @locations.each_with_index do |location,index| %>
-    var marker<%= index %> = L.circle(<%="[#{location[1]["venue"]["location"]["lat"]}, #{location[1]["venue"]["location"]["lng"]}]"%>, 500, {color: getColor(<%="#{location[1]["quality"]}"%>)}).addTo(map);
+    var marker<%= index %> = L.circle(<%="[#{location[1]["venue"]["location"]["lat"]}, #{location[1]["venue"]["location"]["lng"]}]"%>, 500, {color: getColor(<%= location[1]["quality"] %>)}).addTo(qmap);
   <% end %>
 
   var legend = L.control({position: 'bottomright'});
 
-    legend.onAdd = function (qmap) {
+    legend.onAdd = function (map) {
 
     var div = L.DomUtil.create('div', 'info legend'),
         grades = [0, 20, 40, 60, 80, 100],

@@ -40,9 +40,9 @@ a {
 #map, #vmap, #qmap { height: 400px; }
 
 .jumbotron {
-  text-align: center;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.5);
   color: black;
+  text-align: center;
 }
 
 .info {
@@ -72,13 +72,14 @@ a {
 
 body {
   padding-top: 80px;
+  background: url("/img/grid.gif");
 }
 
 .animated {
-  -webkit-animation-duration: 1s;
-  -moz-animation-duration: 1s;
-  -o-animation-duration: 1s;
-  animation-duration: 1s;
+  -webkit-animation-duration: 3s;
+  -moz-animation-duration: 3s;
+  -o-animation-duration: 3s;
+  animation-duration: 3s;
   -webkit-animation-fill-mode: both;
   -moz-animation-fill-mode: both;
   -o-animation-fill-mode: both;
@@ -90,4 +91,12 @@ body {
   -moz-animation-name: fadeIn;
   -o-animation-name: fadeIn;
   animation-name: fadeIn;
+}
+
+.sextant-dude {
+  background: url("/img/sextant.jpg");
+  height: 100%px;
+  position: absolute;
+  z-index: -2;
+  top: 60px;
 }

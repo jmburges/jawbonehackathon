@@ -1,24 +1,18 @@
 .jumbotron.animated.fadeIn
   %h1 Quadrant
-  %p A quadrant is a tool for measuring the altitude of an astronomical object. Quadrant is a tool to help you make more healthful choices by providing a visual historical interface of affective quality of the locations and people in your life.
   %button.btn.btn-primary.btn-lg{:href=>"#map"} See Your Map
   %button.btn.btn-primary.btn-lg{:href=>"#map"} Vett Your Friends
 %ul.nav.nav-tabs.center#maptabs
-  %li.active
-    %a{:href=>"#duration"} Sleep Duration
   %li
+    %a{:href=>"#duration"} Sleep Duration
+  %li.active
     %a{:href=>"#quality"} Sleep Quality
   %li
     %a{:href=>"#mood"} Mood
-  %li
-    %a{:href=>"#venue"} Overall Venue Score
 .tab-content
-  .tab-pane.active#duration
+  .tab-pane#duration
     = erb :_duration_map, @locations
-  .tab-pane#quality
+  .tab-pane#quality.active
     = erb :_quality_map, @locations
   .tab-pane#mood
-    = erb :_mood_map, @locations
-  .tab-pane#venue
-    = erb :_venue_map, @locations
 = haml :_leaderboard, @locations
