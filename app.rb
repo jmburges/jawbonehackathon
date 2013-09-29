@@ -25,6 +25,7 @@ class JawboneApp < Sinatra::Base
   before do
     locations_json = File.open("locations.json").read
     @locations = MultiJson.decode(locations_json)
+    @locations = @locations["locations"]
   end
 
   get '/' do
@@ -208,6 +209,7 @@ end
       }
       jawbone_thread.join
       foursquare_thread.join
+
       location_sleeps ={}
       unique_locations = {}
       location_counter = {}
@@ -284,7 +286,6 @@ end
         item["health_score"]=health_score
         json_out[loc_id]=item
       end
-
       health_scores_keys = health_scores.keys.sort
       top5=[]
       health_scores_keys.reverse.each do |key|
