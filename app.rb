@@ -108,7 +108,7 @@ class JawboneApp < Sinatra::Base
       end
       checkin["sleep"]=sleep_totals.empty? ? Random.new.rand(7200..36000) : sleep_totals.inject(:+)
       checkin["quality"] = Random.new.rand(10..100)
-      checkin["mood"] = "Awesome"
+      checkin["mood"] = Random.new.rand(-50..50)
       json_out << checkin
     end
 
@@ -214,7 +214,7 @@ class JawboneApp < Sinatra::Base
       item = {
         "sleep" =>loc_sleeps.inject(:+).to_f/loc_sleeps.length,
         "quality" => Random.new.rand(10..100),
-        "mood" => "Awesome",
+        "mood" => Random.new.rand(-50..50),
         "checkins" => location_counter[loc_id],
         "venue"=> unique_locations[loc_id]
       }
