@@ -18,5 +18,9 @@
         e.preventDefault();
         $(this).tab('show');
         console.log(e.target.href.match(/#[\s\S]*$/)[0]);
-        drawMap();
+        if((e.target.href.match(/#[\s\S]*$/)[0]) =="#duration") {
+          drawDMap();
+        } else {
+          drawMMap();
+        }
       })
