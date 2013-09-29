@@ -25,13 +25,15 @@ class JawboneApp < Sinatra::Base
   before do
     locations_json = File.open("locations.json").read
     @locations = MultiJson.decode(locations_json)
+    @bottom5 = @locations["bottom5"]
+    @top5 = @locations["top5"]
     @locations = @locations["locations"]
     user_json = File.open("user.json").read
     @user = MultiJson.decode(user_json)
   end
 
   get '/present' do
-    haml :presentation
+    @bottom5
   end
 
   get '/' do
