@@ -1,4 +1,26 @@
-%h1 WELCCOME TO JAWSQUARE
-.friends
-  %h2 FRIENDS
-= erb :_map, @locations
+.jumbotron.animated.fadeIn
+  %h1 JAWSQUARE
+  %h2 
+  %button.btn.btn-primary.btn-lg{:href=>"#map"} See Your Map
+  %button.btn.btn-primary.btn-lg{:href=>"#map"} Vett Your Friends
+%ul.nav.nav-tabs#maptabs
+  %li.active
+    %a{:href=>"#duration"} Sleep Duration
+  %li
+    %a{:href=>"#quality"} Sleep Quality
+  %li
+    %a{:href=>"#mood"} Mood
+  %li
+    %a{:href=>"#venue"} Overall Venue Score
+.tab-content
+  .tab-pane.active#duration
+    = erb :_duration_map, @locations
+  .tab-pane#quality
+    = erb :_quality_map, @locations
+  .tab-pane#mood
+    = erb :_mood_map, @locations
+  .tab-pane#venue
+    = erb :_venue_map, @locations
+= haml :_leaderboard, @locations
+
+  

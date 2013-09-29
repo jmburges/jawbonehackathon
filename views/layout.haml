@@ -3,10 +3,17 @@
   %head
     %link{:href=>"/bootstrap3/css/bootstrap.min.css", :rel=>"stylesheet"}
     %link{:rel=>"stylesheet", :href=>"http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css"}
+    %link{:href=>'http://fonts.googleapis.com/css?family=Fredoka+One|Comfortaa:400,700,300|Chewy', :rel=>'stylesheet', :type=>'text/css'}
     %link{:rel=>"stylesheet", :href=>"/custom.css"}
     %script{:src=>"http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"}
   %body
-    = partial :navbar
-    =yield
+    .container
+      = partial :navbar
+      =yield
     %script{:src => "http://code.jquery.com/jquery-1.9.1.min.js"}
     %script{:src=>"bootstrap3/js/bootstrap.min.js"}
+    :javascript
+      $('#maptabs a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+      })

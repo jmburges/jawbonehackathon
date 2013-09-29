@@ -1,0 +1,11 @@
+.row
+  .col-md-6
+    %h2 Healthy Hotspots
+    %ul
+      - @locations.take(5).each do |location|
+        %li #{location[1]["venue"]["name"]} 
+  .col-md-6
+    %h2 Danger Zones
+    %ul
+      - @locations.take(5).each do |location|
+        %li #{location[1]["venue"]["name"]} 

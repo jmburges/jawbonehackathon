@@ -1,9 +1,9 @@
 require 'bundler'
 Bundler.require
 
-Dir.glob('./lib/*.rb') do |model|
-  require model
-end
+#Dir.glob('./lib/*.rb') do |model|
+#  require model
+#end
 
 
 class App < Sinatra::Base
@@ -23,7 +23,7 @@ class App < Sinatra::Base
   end
 
   get '/locations' do
-    File.read("locations.json")
+    @locations
   end
 
   get '/friends' do
