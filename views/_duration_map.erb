@@ -28,13 +28,13 @@ function drawDMap(){
 
     var div = L.DomUtil.create('div', 'info legend'),
         grades = [0, 7000, 10000, 16000, 24000, 34000],
-        labels = [];
+        labels = ["none", "2 hours", "2.5 hours", "4.4 hours", "6.5 hours", "9.5 hours"];
 
     // loop through our density intervals and generate a label with a colored square for each interval
     for (var i = 0; i < grades.length; i++) {
         div.innerHTML +=
             '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
-            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+            labels[i] + (grades[i + 1] ? '&ndash;' + labels[i + 1] + '<br>' : '+');
     }
 
     return div;
