@@ -122,3 +122,33 @@ footer {
 ul.nav.navbar-nav {
   display: none;
 }
+
+.jumbotron.what {
+  text-align: left;
+  background-color: $green;
+  color: white;
+}
+
+.jumbotron.why {
+  text-align: left;
+  background-color: $blue;
+  color: white;
+}
+
+.jumbotron.sleep {
+  text-align: left;
+  background-color: $yellow;
+  color: white;
+}
+
+.jumbotron.how {
+  text-align: left;
+  background-color: $red;
+  color: white;
+}
+
+.def {
+  font-size: 12pt;
+  line-height: 1.2em;
+  font-style: italic;
+}

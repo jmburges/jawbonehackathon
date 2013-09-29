@@ -33,7 +33,7 @@ class JawboneApp < Sinatra::Base
   end
 
   get '/present' do
-    @bottom5
+    haml :presentation
   end
 
   get '/' do
