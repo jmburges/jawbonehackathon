@@ -2,17 +2,32 @@
   %h1 Quadrant
   %button.btn.btn-primary.btn-lg{:href=>"#map"} See Your Map
   %button.btn.btn-primary.btn-lg{:href=>"#map"} Vett Your Friends
-%ul.nav.nav-tabs.center#maptabs
-  %li
-    %a{:href=>"#duration"} Sleep Duration
-  %li.active
-    %a{:href=>"#quality"} Sleep Quality
-  %li
-    %a{:href=>"#mood"} Mood
-.tab-content
-  .tab-pane#duration
-    = erb :_duration_map, @locations
-  .tab-pane#quality.active
-    = erb :_quality_map, @locations
-  .tab-pane#mood
-= haml :_leaderboard, @locations
+.profile
+  %h2 NAME
+  %ul
+    %li X checkins
+    %li X locations
+    %li avg sleep
+    %li health score
+.map
+  %h2 
+    MAP
+    %a{:href=>"#map-info", :data=>{:toggle=>"modal"}}
+      %span{:class=>"glyphicon glyphicon-question-sign"}
+  %ul.nav.nav-tabs.center#maptabs
+    %li
+      %a{:href=>"#duration"} Sleep Duration
+    %li.active
+      %a{:href=>"#quality"} Sleep Quality
+    %li
+      %a{:href=>"#mood"} Mood
+  .tab-content
+    .tab-pane#duration
+      = erb :_duration_map, @locations
+    .tab-pane#quality.active
+      = erb :_quality_map, @locations
+    .tab-pane#mood
+.leaderboard
+  %h2 LOCATION LEADERBOARD
+  = haml :_leaderboard, @locations
+= erb :_map_info

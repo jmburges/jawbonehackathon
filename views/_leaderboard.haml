@@ -1,13 +1,21 @@
 .row
   .col-md-6
-    %h2 Healthy Hotspots
+    %h3 Healthy Hotspots
     %ul
       - @locations.take(5).each do |location|
         %li 
-          %a{:href=>"#"} #{location[1]["venue"]["name"]} 
+          %span{:class=>"label label-default"}
+            %img{:src=>"#{location[1]["venue"]["categories"][0]["icon"]}"}
+            = location[1]["venue"]["categories"][0]["name"]
+          %a{:href=>"#{location[1]["venue"]["url"]}"} 
+            %h4 #{location[1]["venue"]["name"]}
   .col-md-6
-    %h2 Danger Zones
+    %h3 Danger Zones
     %ul
       - @locations.take(5).each do |location|
         %li 
-          %a{:href=>"#"} #{location[1]["venue"]["name"]} 
+          %span{:class=>"label label-default"}
+            %img{:src=>"#{location[1]["venue"]["categories"][0]["icon"]}"}
+            = location[1]["venue"]["categories"][0]["name"]
+          %a{:href=>"#{location[1]["venue"]["url"]}"} 
+            %h4 #{location[1]["venue"]["name"]}

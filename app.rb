@@ -101,6 +101,10 @@ class JawboneApp < Sinatra::Base
     json_out.to_json
   end
 
+ get '/tokens' do
+   "#{session[:foursquare_token]} #{session[:jawbone_token]}"
+end
+
   get '/locations' do
     # File.read("locations.json")
     client = Jawbone::Client.new session[:jawbone_token]

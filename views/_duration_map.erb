@@ -1,4 +1,4 @@
-<div id="map"></div>
+<div class="info" id="map"></div>
 
 <script>
 function drawMap(){
@@ -17,9 +17,17 @@ function drawMap(){
                       '#FFEDA0';
   }
 
+    function getDColor(d) {
+    return d > 34000  ? '#E31A1C' :
+           d > 24000  ? '#FC4E2A' :
+           d > 16000   ? '#FD8D3C' :
+           d > 10000   ? '#FEB24C' :
+           d > 7000   ? '#FED976' :
+                      '#FFEDA0';
+  }
 
   <% @locations.each_with_index do |location,index| %>
-    var marker<%= index %> = L.circle(<%="[#{location[1]["venue"]["location"]["lat"]}, #{location[1]["venue"]["location"]["lng"]}]"%>, 500, {color: getColor(<%= location[1]["duration"] %>)}).addTo(map);
+    var marker<%= index %> = L.circle(<%="[#{location[1]["venue"]["location"]["lat"]}, #{location[1]["venue"]["location"]["lng"]}]"%>, <%= location[1]["checkins"]*20 %>, {color: getDColor(<%= location[1]["duration"] %>)}).addTo(map);
   <% end %>
 
   var legend = L.control({position: 'bottomright'});
