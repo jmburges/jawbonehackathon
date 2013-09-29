@@ -26,6 +26,8 @@ class JawboneApp < Sinatra::Base
     locations_json = File.open("locations.json").read
     @locations = MultiJson.decode(locations_json)
     @locations = @locations["locations"]
+    user_json = File.open("user.json").read
+    @user = MultiJson.decode(user_json)
   end
 
   get '/' do
