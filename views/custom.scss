@@ -8,6 +8,11 @@ body, h1, h2, h3, h4, h5 {
   font-family: 'Comfortaa', Helvetica, Arial, sans-serif;
 }
 
+body {
+  background: url("/img/sextant.jpg") no-repeat;
+  background-position: right 60px top 60px;
+}
+
 h1, h2 {
   font-weight: 800;
 }
@@ -36,7 +41,7 @@ a {
 
 .jumbotron {
   text-align: center;
-  background-color: white;
+  background: rgba(255, 255, 255, 0.6);
   color: black;
 }
 
