@@ -2,13 +2,15 @@
   %h1 Quadrant
   %button.btn.btn-primary.btn-lg{:href=>"#map"} See Your Map
   %button.btn.btn-primary.btn-lg{:href=>"#map"} Vett Your Friends
-.profile
-  %h2 NAME
-  %ul
-    %li X checkins
-    %li X locations
-    %li avg sleep
-    %li health score
+.profile.clearfix
+  %img{:src=>"#{@user["photo"]}", :class=>"thumbnail pull-left"}
+  .prof.pull-left
+    %h2 Welcome, #{@user["first_name"]} #{@user["last_name"]}!
+    %ul
+      %li #{@user["checkins"]} checkins
+      %li X locations
+      %li avg sleep
+      %li health score
 .map
   %h2 
     MAP
