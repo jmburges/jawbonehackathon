@@ -3,5 +3,6 @@
     %button.navbar-toggle{:type=>"button", :data=>{:toggle=>"collapse", :target=>".navbar-ex1-collapse"}}
     %a.navbar-brand{:href=>"#"} Quadrant
   .collapse.navbar-collapse.navbar-ex1-collapse
-    %a.btn.btn-warning.btn-sm.pull-right{:href=>"/auth/Jawbone"} Login with Jawbone
-    %a.btn.btn-primary.btn-sm.pull-right{:href=>"/auth/foursquare"} Login with Foursquare
+    %ul.nav.navbar-nav.pull-right
+      %a.btn.btn-warning.btn-sm{:href=>"/auth/Jawbone"} Login with Jawbone
+      %a.btn.btn-primary.btn-sm{:href=>"/auth/foursquare"} Login with Foursquare

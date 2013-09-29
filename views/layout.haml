@@ -24,3 +24,8 @@
           drawMMap();
         }
       })
+      $(function(){
+        $(window).scroll(function() {              
+          $('ul.nav.navbar-nav').toggle($(document).scrollTop() > 200);
+        });
+      })
