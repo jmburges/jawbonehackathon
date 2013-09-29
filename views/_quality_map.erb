@@ -1,4 +1,4 @@
-<div id="qmap"></div>
+<div class="info" id="qmap"></div>
 
 <script>
   var qmap = L.map('qmap').setView([40.7142, -74.0064], 11);
@@ -18,7 +18,7 @@
 
 
   <% @locations.each_with_index do |location,index| %>
-    var marker<%= index %> = L.circle(<%="[#{location[1]["venue"]["location"]["lat"]}, #{location[1]["venue"]["location"]["lng"]}]"%>, 500, {color: getColor(<%= location[1]["quality"] %>)}).addTo(qmap);
+    var marker<%= index %> = L.circle(<%="[#{location[1]["venue"]["location"]["lat"]}, #{location[1]["venue"]["location"]["lng"]}]"%>, <%= location[1]["checkins"]*20 %>, {color: getColor(<%= location[1]["quality"] %>)}).addTo(qmap);
   <% end %>
 
   var legend = L.control({position: 'bottomright'});

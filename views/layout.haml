@@ -10,6 +10,7 @@
     .container
       = partial :navbar
       =yield
+    = haml :_footer
     %script{:src => "http://code.jquery.com/jquery-1.9.1.min.js"}
     %script{:src=>"bootstrap3/js/bootstrap.min.js"}
     :javascript
@@ -17,5 +18,9 @@
         e.preventDefault();
         $(this).tab('show');
         console.log(e.target.href.match(/#[\s\S]*$/)[0]);
-        drawMap();
+        if((e.target.href.match(/#[\s\S]*$/)[0]) =="#duration") {
+          drawDMap();
+        } else {
+          drawMMap();
+        }
       })

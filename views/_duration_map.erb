@@ -1,7 +1,7 @@
-<div id="map"></div>
+<div class="info" id="map"></div>
 
 <script>
-function drawMap(){
+function drawDMap(){
   var map = L.map('map').setView([40.7142, -74.0064], 11);
   L.tileLayer('http://tile.stamen.com/toner/{z}/{x}/{y}.png', {attribution: 'Stamen Toner'}, {
       attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
@@ -9,17 +9,17 @@ function drawMap(){
   }).addTo(map);
 
   function getColor(d) {
-    return d > 100  ? '#E31A1C' :
-           d > 80  ? '#FC4E2A' :
-           d > 60   ? '#FD8D3C' :
-           d > 40   ? '#FEB24C' :
-           d > 20   ? '#FED976' :
+    return d > 34000  ? '#E31A1C' :
+           d > 24000  ? '#FC4E2A' :
+           d > 16000   ? '#FD8D3C' :
+           d > 10000   ? '#FEB24C' :
+           d > 7000   ? '#FED976' :
                       '#FFEDA0';
   }
 
 
   <% @locations.each_with_index do |location,index| %>
-    var marker<%= index %> = L.circle(<%="[#{location[1]["venue"]["location"]["lat"]}, #{location[1]["venue"]["location"]["lng"]}]"%>, 500, {color: getColor(<%= location[1]["duration"] %>)}).addTo(map);
+    var marker<%= index %> = L.circle(<%="[#{location[1]["venue"]["location"]["lat"]}, #{location[1]["venue"]["location"]["lng"]}]"%>, <%= location[1]["checkins"]*20 %>, {color: getColor(<%= location[1]["sleep"] %>)}).addTo(map);
   <% end %>
 
   var legend = L.control({position: 'bottomright'});
@@ -27,7 +27,7 @@ function drawMap(){
     legend.onAdd = function (map) {
 
     var div = L.DomUtil.create('div', 'info legend'),
-        grades = [0, 20, 40, 60, 80, 100],
+        grades = [0, 7000, 10000, 16000, 24000, 34000],
         labels = [];
 
     // loop through our density intervals and generate a label with a colored square for each interval

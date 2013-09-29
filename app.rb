@@ -163,6 +163,10 @@ class JawboneApp < Sinatra::Base
     end
   end
 
+ get '/tokens' do
+   "#{session[:foursquare_token]} #{session[:jawbone_token]}"
+end
+
   get '/locations' do
 
     if !params["dev"].nil?

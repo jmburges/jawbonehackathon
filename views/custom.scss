@@ -17,6 +17,10 @@ h1, h2 {
   font-weight: 800;
 }
 
+h4 {
+  display: inline-block;
+}
+
 .navbar {
   background-color: white;
   border-color: white;
@@ -37,7 +41,7 @@ a {
   color: $green;
 }
 
-#map, #vmap, #qmap { height: 400px; }
+#map, #vmap, #qmap, #mmap { height: 400px;}
 
 .jumbotron {
   background: rgba(255, 255, 255, 0.5);
@@ -95,8 +99,17 @@ body {
 
 .sextant-dude {
   background: url("/img/sextant.jpg");
-  height: 100%px;
+  height: 100%;
   position: absolute;
   z-index: -2;
   top: 60px;
+}
+
+footer {
+  margin-top: 20px;
+  padding: 20px;
+}
+
+.label {
+  margin-right: 10px;
 }
