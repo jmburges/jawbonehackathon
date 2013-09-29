@@ -32,6 +32,21 @@ class JawboneApp < Sinatra::Base
     haml :index
   end
 
+  get '/user' do
+    foursquare_client = Foursquare2::Client.new(:oauth_token => session[:foursquare_token])
+    user = foursquare_client.user("self")
+    
+    json_out = {}
+    json_out["first_name"] = session[:first_name]
+    json_out["last_name"] = session[:last_name]
+    json_out["photo"] = user["photo"]
+    json_out["checkins"] = user["checkins"]["count"]
+
+
+    content_type :json
+    json_out.to_json
+  end
+
   get '/checkins' do
     client = Jawbone::Client.new session[:jawbone_token]
     foursquare_client = Foursquare2::Client.new(:oauth_token => session[:foursquare_token])
