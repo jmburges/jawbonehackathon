@@ -91,6 +91,7 @@ class JawboneApp < Sinatra::Base
       jawbone_thread.join
       foursquare_thread.join
       json_out=[]
+      health_scores={}
       checkins.each do |checkin|
         if checkin["venue"].nil?
           break;
@@ -115,15 +116,50 @@ class JawboneApp < Sinatra::Base
         end
         checkin["sleep"]=sleep_totals.empty? ? Random.new.rand(7200..36000) : sleep_totals.inject(:+)
         checkin["quality"] = Random.new.rand(10..100)
-        checkin["mood"] = Random.new.rand(-50..50)
+        checkin["mood"] = Random.new.rand(1..100)
         health_score = (checkin["sleep"]/1000)+(checkin["quality"]/5)+checkin["mood"]
         checkin["health_score"]=health_score
 
+        if health_scores[health_score].nil?
+          health_scores[health_score]=[checkin["id"]]
+        else
+          health_scores[health_score] << checkin["id"]
+        end
         json_out << checkin
       end
 
+      health_scores_keys = health_scores.keys.sort
+      top5=[]
+      health_scores_keys.reverse.each do |key|
+        health_scores[key].each do |id|
+          top5 << id
+          if top5.size>=5
+            break
+          end
+        end
+        if top5.size>=5
+          break
+        end
+      end
+
+      bottom5=[]
+      health_scores_keys.each do |key|
+        health_scores[key].each do |id|
+          bottom5 << id
+          if bottom5.size>=5
+            break
+          end
+        end
+        if bottom5.size>=5
+          break
+        end
+      end
+      real_json_out = {}
+      real_json_out["checkins"]=json_out
+      real_json_out["top5"]=top5
+      real_json_out["bottom5"]=bottom5
       content_type :json
-      json_out.to_json
+      real_json_out.to_json
     end
   end
 
@@ -225,23 +261,58 @@ class JawboneApp < Sinatra::Base
       end
       #   end
       json_out={}
+      health_scores = {}
       location_sleeps.each_pair do |loc_id, loc_sleeps|
         item = {
           "sleep" =>loc_sleeps.inject(:+).to_f/loc_sleeps.length,
           "quality" => Random.new.rand(10..100),
-          "mood" => Random.new.rand(-50..50),
+          "mood" => Random.new.rand(1..100),
           "checkins" => location_counter[loc_id],
           "venue"=> unique_locations[loc_id]
         }
-
         health_score = (item["sleep"]/1000)+(item["quality"]/5)+item["mood"]
+
+        if health_scores[health_score].nil?
+          health_scores[health_score]=[loc_id]
+        else
+          health_scores[health_score] << loc_id
+        end
         item["health_score"]=health_score
         json_out[loc_id]=item
       end
-      #   json_out[loc_id]=item
-      # end
+
+      health_scores_keys = health_scores.keys.sort
+      top5=[]
+      health_scores_keys.reverse.each do |key|
+        health_scores[key].each do |id|
+          top5 << id
+          if top5.size>=5
+            break
+          end
+        end
+        if top5.size>=5
+          break
+        end
+      end
+
+      bottom5=[]
+      health_scores_keys.each do |key|
+        health_scores[key].each do |id|
+          bottom5 << id
+          if bottom5.size>=5
+            break
+          end
+        end
+        if bottom5.size>=5
+          break
+        end
+      end
+      real_json_out = {}
+      real_json_out["locations"]=json_out
+      real_json_out["top5"]=top5
+      real_json_out["bottom5"]=bottom5
       content_type :json
-      json_out.to_json
+      real_json_out.to_json
     end
   end
 
