@@ -90,12 +90,20 @@ module Jawbone
       response.parsed_response
     end
 
-    def sleeps
-      response = self.class.get "https://jawbone.com/nudge/api/users/4ULsxMErl1hYtaoELHQ0LQ/sleeps", 
-        { :headers => { "Authorization" => "Bearer #{token}" } }
+    def sleeps(params)
+      response = self.class.get "https://jawbone.com/nudge/api/users/@me/sleeps", 
+        { :headers => { "Authorization" => "Bearer #{token}" },
+          :query => params
+      }
       response.parsed_response
     end
 
+    def sleeps_next(next_url)
+      response = self.class.get "https://jawbone.com#{next_url}", 
+        { :headers => { "Authorization" => "Bearer #{token}" },
+      }
+      response.parsed_response
+    end
     def sleep(sleep_id)
       response = self.class.get "https://jawbone.com/nudge/api/users/@me/sleeps/#{sleep_id}", 
         { :headers => { "Authorization" => "Bearer #{token}" } }
@@ -109,7 +117,7 @@ module Jawbone
     end
 
     def sleeps_graph(xid)
-      response = self.class.get "https://jawbone.com/nudge/api/v.1.0/sleeps/4ULsxMErl1hYtaoELHQ0LQ/image", 
+      response = self.class.get "https://jawbone.com/nudge/api/v.1.0/sleeps/ABC123/image", 
         { :headers => { "Authorization" => "Bearer #{token}" } }
       response.parsed_response
     end
