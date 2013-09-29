@@ -1,9 +1,9 @@
 require 'bundler'
 Bundler.require
 
-Dir.glob('./lib/*.rb') do |model|
-  require model
-end
+#Dir.glob('./lib/*.rb') do |model|
+#  require model
+#end
 
 class JawboneApp < Sinatra::Base
   use Rack::Session::Cookie, :secret => '33west26'

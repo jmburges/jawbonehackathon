@@ -1,0 +1,15 @@
+<form role="form">
+  <% @locations.first[1].keys.each_with_index do |key, index| %>
+    <div class="radio">
+      <label>
+        <% if index==0 %>
+          <input type="radio" name="sort+options" id="option<%= index %>" value="<%= key %>" checked><%= key %></input>
+        <% else %>
+          <input type="radio" name="sort+options" id="option<%= index %>" value="<%= key %>"><%= key %></input>
+        <% end %>
+                </label>
+      </div>
+
+  <% end %>
+
+</form>
