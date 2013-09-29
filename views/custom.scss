@@ -17,6 +17,17 @@ h1, h2 {
   border-color: white;
 }
 
+.nav-tabs > li, .nav-pills > li {
+    float:none;
+    display:inline-block;
+    *display:inline; /* ie7 fix */
+     zoom:1; /* hasLayout ie7 trigger */
+}
+
+.nav-tabs, .nav-pills {
+    text-align:center;
+}
+
 a {
   color: $green;
 }
@@ -24,8 +35,9 @@ a {
 #map, #vmap, #qmap { height: 400px; }
 
 .jumbotron {
-  background-color: $green;
-  color: white;
+  text-align: center;
+  background-color: white;
+  color: black;
 }
 
 .info {
