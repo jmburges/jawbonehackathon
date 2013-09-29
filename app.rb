@@ -29,6 +29,10 @@ class JawboneApp < Sinatra::Base
     @user = MultiJson.decode(user_json)
   end
 
+  get '/present' do
+    haml :presentation
+  end
+
   get '/' do
 
     haml :index
