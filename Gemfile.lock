@@ -1,10 +1,50 @@
+GIT
+  remote: https://github.com/ruthienachmany/omniauth-jawbone.git
+  revision: bef4b607e3f8b349783b7b95458f4282f336722b
+  specs:
+    omniauth-jawbone (1.0)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.0)
+
+PATH
+  remote: jawbone-up-api/
+  specs:
+    jawbone (0.3.0)
+      httparty (~> 0.11.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
     bond (0.4.3)
+    faraday (0.8.8)
+      multipart-post (~> 1.2.0)
     haml (4.0.3)
       tilt
+    hashie (2.0.5)
+    httparty (0.11.0)
+      multi_json (~> 1.0)
+      multi_xml (>= 0.5.2)
+    httpauth (0.2.0)
+    jwt (0.1.8)
+      multi_json (>= 1.5)
     multi_json (1.8.0)
+    multi_xml (0.5.5)
+    multipart-post (1.2.0)
+    oauth2 (0.8.1)
+      faraday (~> 0.8)
+      httpauth (~> 0.1)
+      jwt (~> 0.1.4)
+      multi_json (~> 1.0)
+      rack (~> 1.2)
+    omniauth (1.1.4)
+      hashie (>= 1.2, < 3)
+      rack
+    omniauth-foursquare (0.0.8)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.0)
+    omniauth-oauth2 (1.1.1)
+      oauth2 (~> 0.8.0)
+      omniauth (~> 1.0)
     rack (1.5.2)
     rack-protection (1.5.0)
       rack
@@ -37,7 +77,11 @@ PLATFORMS
 
 DEPENDENCIES
   haml
+  jawbone!
   multi_json
+  omniauth
+  omniauth-foursquare
+  omniauth-jawbone!
   sass
   shotgun
   sinatra
