@@ -5,11 +5,17 @@ Dir.glob('./lib/*.rb') do |model|
   require model
 end
 
-class JawboneApp < Sinatra::Base
+
+class App < Sinatra::Base
   
   configure do
     set :root, File.dirname(__FILE__)
     set :public_folder, 'public'
+  end
+
+  before do
+    locations_json = File.open("locations.json").read
+    @locations = MultiJson.decode(locations_json)
   end
 
   get '/' do
@@ -24,24 +30,16 @@ class JawboneApp < Sinatra::Base
     File.read("friends.json")
   end
 
+  get '/custom.css' do
+    scss :custom
+  end
+
   helpers do
-    def adv_partial(template,locals=nil)
-      if template.is_a?(String) || template.is_a?(Symbol)
-        template = :"_#{template}"
-      else
-        locals=template
-        template = template.is_a?(Array) ? :"_#{template.first.class.to_s.downcase}" : :"_#{template.class.to_s.downcase}"
-      end
-      if locals.is_a?(Hash)
-        haml template, {}, locals      
-      elsif locals
-        locals=[locals] unless locals.respond_to?(:inject)
-        locals.inject([]) do |output,element|
-          output << haml(template,{},{template.to_s.delete("_").to_sym => element})
-        end.join("\n")
-      else 
-        haml template
-      end
+    def partial(template, locals=nil)
+      locals = locals.is_a?(Hash) ? locals : {template.to_sym => locals}
+      template = :"_#{template}"
+      haml template, locals        
     end
   end
+
 end
